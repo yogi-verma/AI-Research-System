@@ -3,16 +3,13 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from tools import web_search, scrape_url
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
+from config import get_required_secret
 
 # Model setup
 llm = ChatGroq(
     model="openai/gpt-oss-20b",
     temperature=0,
-    groq_api_key=os.getenv("GROQ_API_KEY"),
+    groq_api_key=get_required_secret("GROQ_API_KEY"),
 )
 
 
